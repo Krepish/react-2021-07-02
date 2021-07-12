@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
@@ -18,8 +19,20 @@ export default function Restaurants({ restaurants }) {
 
   return (
     <div>
-      <Tabs tabs={tabs} onChange={setActiveId} activeId={activeId} />
+      <Tabs tabs={tabs} onChange={setActiveId} activeId={'activeId'} />
       <Restaurant restaurant={activeRestaurant} />
     </div>
   );
 }
+
+Restaurants.propTypes = {
+  restaurants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+    }).isRequired
+  ).isRequired,
+};
+
+//сделать первый рестаран дефолтным
+// дефолтное имя для рестроана, если оно не пришло
